@@ -17,7 +17,25 @@ document.addEventListener('DOMContentLoaded', e => {
   form.addEventListener('submit', e => {
 	e.preventDefault();
 	try {
-        onFormSubmit();
+        (new FormValidator()).onFormSubmit(...fields => {
+			const {
+				origin,
+				destination,
+				depart_date,
+				return_date,
+				currency
+			} = fields;
+			
+			locations.fetchTickets({
+				origin,
+				destination,
+				depart_date,
+				return_date,
+				currency
+			});
+			
+			ticketsUI.renderTickets(locations.lastSearch);
+		});
 	} catch (err) {
 		console.warn(err);
 	}
@@ -25,10 +43,10 @@ document.addEventListener('DOMContentLoaded', e => {
 
   // handlers
   async function initApp() {
-    await locations.init();
-	await favorites.init();
-	favoritesUI.renderTickets();
-    formUI.setAutocompleteData(locations.shortCities);
+	Promise.all([await locations.init(), favorites.init()]).then(() => {
+		favoritesUI.renderTickets();
+		formUI.setAutocompleteData(locations.shortCities);
+	});
   }
 
   async function onFormSubmit() {
@@ -60,7 +78,6 @@ document.addEventListener('DOMContentLoaded', e => {
 		});
 
 		ticketsUI.renderTickets(locations.lastSearch);
-		console.log(locations.lastSearch);
 	}
   }
 });
