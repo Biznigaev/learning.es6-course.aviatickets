@@ -4,7 +4,7 @@ class Favorites {
     this.tickets = [];
   }
 
-  async init() {
+  init() {
     if (this.storage.length) {
       const now = new Date();
       Array.from(this.storage).forEach(ticket => {
