@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', e => {
 
   // handlers
   async function initApp() {
-	Promise.all([await locations.init(), favorites.init()]).then(() => {
-		favoritesUI.renderTickets();
-		formUI.setAutocompleteData(locations.shortCities);
-	});
+	await Promise.all([locations.init(), favorites.init()]).then(() => {
+    favoritesUI.renderTickets();
+    formUI.setAutocompleteData(locations.shortCities);
+  });
   }
 });
 
