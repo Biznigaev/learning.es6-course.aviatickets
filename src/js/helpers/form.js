@@ -3,7 +3,7 @@ import formUI from "../views/form";
 import currencyUI from "../views/currency";
 import ticketsUI from "../views/tickets";
 
-class FormValidator {
+export class FormValidator {
   async onFormSubmit(callbackUserFunc) {
     if (this.isValidForm()) {
       return await callbackUserFunc({
