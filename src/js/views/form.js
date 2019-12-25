@@ -39,7 +39,6 @@ class FormUI {
   }
 
   setAutocompleteData(data) {
-    console.log(data)
     this.originAutocomplete.updateData(data);
     this.destinationAutocomplete.updateData(data);
   }

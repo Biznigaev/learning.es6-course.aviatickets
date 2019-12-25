@@ -13,3 +13,6 @@ npm i
 ```bash
 npm run dev
 ```
+
+
+Demo доступно по [ссылке](https://biznigaev.github.io/learning.es6-course.aviatickets/dist/)
